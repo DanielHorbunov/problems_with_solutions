@@ -1,3 +1,5 @@
+# TODO: формат зберігання графа
+
 # Клас "вузол" -- потрібен для реалізації класу "вершина".
 # Атрибути:
 # key -- ключ вузла, визначається за вказаним в конструкторі
@@ -92,6 +94,19 @@ class Graph:
         self.vertices = {}
         self.vertex_num = 0
         self.oriented = self.oriented if oriented is None else oriented
+
+    def number_of_links(self):
+        return sum([len(self[v].get_neighbors()) for v in self.vertices])
+
+    # Ця штука ненадовго
+    def number_of_edges(self):
+        links = []
+        for v in self.vertices:
+            for n in self[v].get_neighbors():
+                pair = (v, n) if self.oriented else {v, n}
+                if pair not in links:
+                    links.append(pair)
+        return len(links)
 
     def __contains__(self, vertex):
         if isinstance(vertex, Node):

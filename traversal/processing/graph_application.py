@@ -1,11 +1,11 @@
 import pandas as pd
 import pickle as pkl
-from structures.graph import *
+from processing.structures.graph import *
 
 # Приклад застосування
 
 # Зчитуємо граф
-path_graph = "../traversal/output_data/wb_graph.pkl"
+path_graph = "../traversal/processing/data/output_data/wb_graph.pkl"
 with open(path_graph, "rb") as gr_s:
     wb_graph = pkl.load(gr_s)
 

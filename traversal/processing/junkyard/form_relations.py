@@ -1,6 +1,6 @@
 import pandas as pd
 import pickle as pkl
-from structures.graph import *
+from processing.structures.graph import *
 
 # Приклад застосування
 

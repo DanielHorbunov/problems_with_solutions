@@ -1,3 +1,4 @@
+import numpy as np
 from processing.structures.graph import Graph
 
 
@@ -76,9 +77,25 @@ class Cluster:
         return bool(self.elements)
 
 
+def split_graph(input_graph: Graph):
+    vertices_to_review = np.array(list(input_graph.get_vertices().keys()))
+    clusters = []
+
+    while len(vertices_to_review) > 0:
+        pivot = vertices_to_review[0]
+
+        cluster = Cluster(input_graph)
+        cluster.fit(pivot)
+        clusters.append(cluster)
+
+        routes = cluster.get_contents()
+        vertices_to_review = np.setdiff1d(vertices_to_review, list(routes.keys()))
+
+    return clusters
+
+
 class ClusterAnalyzer:
 
     def __init__(self, cluster, relations_table):
         self.base_cluster = cluster
         self.table = relations_table
-

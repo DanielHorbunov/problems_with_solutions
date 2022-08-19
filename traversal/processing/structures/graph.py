@@ -108,6 +108,9 @@ class Graph:
     def __getitem__(self, vertex):
         return self.get_vertex(vertex)
 
+    def __bool__(self):
+        return bool(self.vertices)
+
 
 # Знаходження найкоротшого шляху на графі graph, що веде з вершини from_vertex до to_vertex
 def get_route(graph, from_vertex, to_vertex):

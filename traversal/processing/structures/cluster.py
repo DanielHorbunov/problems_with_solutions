@@ -66,8 +66,19 @@ class Cluster:
     def get_subgraph(self):
         return self.subgraph
 
+    def __len__(self):
+        return len(self.elements)
+
+    def __iter__(self):
+        return iter(self.elements)
+
+    def __bool__(self):
+        return bool(self.elements)
+
 
 class ClusterAnalyzer:
 
-    def __init__(self, cluster):
+    def __init__(self, cluster, relations_table):
         self.base_cluster = cluster
+        self.table = relations_table
+

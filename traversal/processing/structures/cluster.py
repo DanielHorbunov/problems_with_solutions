@@ -36,7 +36,7 @@ class Cluster:
             routes[destination] = current_route[::-1]
 
         # Навпаки, бо без цього шлях тоді виходить з кінцевого в початковий
-        return routes
+        self.elements = routes
 
     def clean_contents(self):
         self.subgraph.clean_vertices()
@@ -59,6 +59,7 @@ class Cluster:
 
     def build_subgraph(self):
         for key in self.elements.keys():
+            print(self.elements.keys())
             for neighbor_key in self.base_graph[key].get_neighbors():
                 vertex_name = self.base_graph[key].get_name()
                 vertex_neighbor_name = self.base_graph[neighbor_key].get_name()

@@ -65,3 +65,9 @@ class Cluster:
 
     def get_subgraph(self):
         return self.subgraph
+
+
+class ClusterAnalyzer:
+
+    def __init__(self, cluster):
+        self.base_cluster = cluster

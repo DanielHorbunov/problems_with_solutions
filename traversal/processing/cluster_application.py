@@ -1,5 +1,5 @@
 import pickle as pkl
-from structures.cluster import Cluster
+from structures.cluster import Cluster, split_graph
 
 
 # Зчитуємо граф
@@ -13,3 +13,7 @@ key = 880
 # Побудуємо кластер за Путіним (зберемо усі пов'язані із його ключем інші)
 key_cluster = Cluster(wb_graph)
 key_cluster.fit(key)
+
+# Розбиваємо граф на кластери
+clusters_list = split_graph(wb_graph)
+

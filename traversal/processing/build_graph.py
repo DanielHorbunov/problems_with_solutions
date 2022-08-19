@@ -1,9 +1,9 @@
 import pandas as pd
 import pickle as pkl
-from processing.structures.graph import *
-import numpy as np
+from structures.graph import *
 
 # Зчитування даних
+
 path = "./data/input_data/relations.xlsx"
 with open(path, "rb") as wb_stream:
     wb = pd.read_excel(wb_stream, engine='openpyxl')

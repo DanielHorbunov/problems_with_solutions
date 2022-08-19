@@ -25,3 +25,6 @@ class Cluster:
     def update_key(self, new_key):
         self.key_node = new_key
         self.delve()
+
+    def get_subgraph(self):
+        pass

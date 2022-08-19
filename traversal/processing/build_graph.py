@@ -4,7 +4,7 @@ from processing.structures.graph import *
 import numpy as np
 
 # Зчитування даних
-path = "../traversal/processing/data/input_data/relations.xlsx"
+path = "./data/input_data/relations.xlsx"
 with open(path, "rb") as wb_stream:
     wb = pd.read_excel(wb_stream, engine='openpyxl')
 
@@ -35,7 +35,7 @@ for from_key in iter(set(wb_shortened["person_id_from"])):
             wb_graph.add_edge(to_key, name_for_id_to, from_key, name_for_id_from)
 
 # Збереження графа
-path_graph = "../traversal/processing/data/output_data/wb_graph.pkl"
+path_graph = "./data/output_data/wb_graph.pkl"
 
 with open(path_graph, "wb") as out:
     pkl.dump(wb_graph, out)

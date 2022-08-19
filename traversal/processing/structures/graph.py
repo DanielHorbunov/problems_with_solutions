@@ -88,6 +88,11 @@ class Graph:
         if not self.oriented:
             self[to_vertex].add_neighbor(from_vertex)
 
+    def clean_vertices(self, oriented=None):
+        self.vertices = {}
+        self.vertex_num = 0
+        self.oriented = self.oriented if oriented is None else oriented
+
     def __contains__(self, vertex):
         if isinstance(vertex, Node):
             return vertex.get_key() in self.vertices

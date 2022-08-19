@@ -1,7 +1,6 @@
 from processing.structures.graph import Graph
 
 
-# TODO: subgraph based on cluster - DONE?
 class Cluster:
 
     def __init__(self, graph: Graph):
@@ -59,7 +58,6 @@ class Cluster:
 
     def build_subgraph(self):
         for key in self.elements.keys():
-            print(self.elements.keys())
             for neighbor_key in self.base_graph[key].get_neighbors():
                 vertex_name = self.base_graph[key].get_name()
                 vertex_neighbor_name = self.base_graph[neighbor_key].get_name()

@@ -26,3 +26,4 @@ for destination in destinations:
 
 # Комбінуємо у датафрейм
 df_results = pd.DataFrame({"destination": destinations, "path": results})
+print(df_results)

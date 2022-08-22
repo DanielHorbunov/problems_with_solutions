@@ -99,16 +99,6 @@ class Graph:
     def number_of_links(self):
         return sum([len(self[v].get_neighbors()) for v in self.vertices])
 
-    # Ця штука ненадовго
-    def number_of_edges(self):
-        links = []
-        for v in self.vertices:
-            for n in self[v].get_neighbors():
-                pair = (v, n) if self.oriented else {v, n}
-                if pair not in links:
-                    links.append(pair)
-        return len(links)
-
     def __contains__(self, vertex):
         if isinstance(vertex, Node):
             return vertex.get_key() in self.vertices

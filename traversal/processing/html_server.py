@@ -1,10 +1,10 @@
 import cgi
 import os
-import pickle as pkl
+import json
 
 
-with open(r"./data/output_data/wb_graph.pkl", "rb") as f:
-    wb_graph = pkl.load(f)
+with open(r"./data/output_data/wb_graph.json", "r") as f:
+    wb_graph = json.load(f)
 
 
 from wsgiref.simple_server import make_server
@@ -79,7 +79,7 @@ class ServerApp:
 
 if __name__ == '__main__':
 
-    print('SERVER')
+    print('SERVER START')
 
     controller = ServerApp()
 

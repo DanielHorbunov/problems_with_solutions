@@ -1,6 +1,5 @@
 import pandas as pd
 import pickle as pkl
-import json
 from structures.graph import *
 
 # Приклад застосування

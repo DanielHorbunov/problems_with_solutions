@@ -192,6 +192,26 @@ def get_route(graph, from_vertex, to_vertex):
     return route[::-1]
 
 
+# Знаходження усіх шляхів на графі graph, що ведуть з вершини from_vertex до to_vertex
+def get_possible_routes(graph, from_vertex, to_vertex, max_length=5):
+    assert from_vertex != to_vertex
+    list_of_possible_paths = []
+    list_of_current_paths = [[from_vertex]]
+    while len(list_of_current_paths) > 0:
+        #print(list_of_current_paths)
+        current_path = list_of_current_paths.pop(0)
+        if len(current_path) > max_length:
+            continue
+        last_point = current_path[-1]
+        if last_point == to_vertex:
+            list_of_possible_paths.append(current_path)
+            continue
+        for next_point in graph[last_point].get_neighbors():
+            if next_point not in current_path:
+                list_of_current_paths.append(current_path + [next_point])
+    return list_of_possible_paths
+
+
 # Знаходження пов'язаних вузлів та шляхів до них
 def get_routes(graph, from_vertex):
     # Перелік сполучень одного вузла з іншим. Використовується для побудови шляху

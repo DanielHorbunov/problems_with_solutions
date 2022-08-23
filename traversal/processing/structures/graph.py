@@ -1,3 +1,4 @@
+import json
 # TODO: формат зберігання графа
 # TODO: реалізація
 
@@ -43,6 +44,17 @@ class Vertex(Node):
 
     def get_neighbors(self):
         return self.neighbors.keys()
+
+    def set_neighbors(self, neighbors: dict):
+        self.neighbors = neighbors.copy()
+
+    def __str__(self):
+        return "Vertex data: \n" \
+               "- Key: {key} \n" \
+               "- Name: {name} \n" \
+               "- Neighbors: {neighbors}".format(
+            key=self.key, name=self.name, neighbors=self.neighbors
+        )
 
 # Клас "граф" -- реалізація безпосередньо графа.
 # Атрибути:
@@ -98,6 +110,32 @@ class Graph:
 
     def number_of_links(self):
         return sum([len(self[v].get_neighbors()) for v in self.vertices])
+
+    def to_json(self, fs):
+        to_write = {
+            "oriented": self.oriented,
+            "vertex_num": self.vertex_num,
+            "vertices": list()
+        }
+        for vertex_key in self.vertices:
+            vertex_data = {
+                "id": vertex_key,
+                "name": self[vertex_key].get_name(),
+                "neighbors": self[vertex_key].neighbors
+            }
+            to_write["vertices"].append(vertex_data)
+        json.dump(to_write, fs)
+        return True
+
+    def from_json(self, fs):
+        to_read = json.load(fs)
+        self.oriented = to_read["oriented"]
+        self.vertex_num = to_read["vertex_num"]
+        for enitity in to_read["vertices"]:
+            self.add_vertex(enitity["id"], enitity["name"])
+            self[enitity["id"]].set_neighbors(
+                {int(k): enitity["neighbors"][k] for k in enitity["neighbors"].keys()}
+            )
 
     def __contains__(self, vertex):
         if isinstance(vertex, Node):

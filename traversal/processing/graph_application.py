@@ -1,13 +1,16 @@
 import pandas as pd
 import pickle as pkl
+import json
 from structures.graph import *
 
 # Приклад застосування
 
 # Зчитуємо граф
-path_graph = "./data/output_data/wb_graph.pkl"
-with open(path_graph, "rb") as gr_s:
-    wb_graph = pkl.load(gr_s)
+path_graph = "./data/output_data/wb_graph.json"
+wb_graph = Graph()
+with open(path_graph, "r") as gr_s:
+    #wb_graph = pkl.load(gr_s)
+    wb_graph.from_json(gr_s)
 
 # Ключ - Путін
 key = 880
